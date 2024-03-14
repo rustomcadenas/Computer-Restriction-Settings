@@ -39,11 +39,8 @@ def changeValue(value):
     except Exception as e:
         return False 
 
-def CustomRestriction(settings):
-    return True
-
-    pass
-    
+ 
+ 
 # ================================================================================== IS ADMIN
 def is_admin():
     try:
