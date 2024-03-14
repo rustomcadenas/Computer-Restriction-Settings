@@ -39,8 +39,32 @@ def changeValue(value):
     except Exception as e:
         return False 
 
- 
- 
+def CustomRestriction(settings):
+    settings = list(set(settings.split(",")))  
+    result = ""
+    try:
+        location = wrg.HKEY_CURRENT_USER
+        soft = wrg.OpenKeyEx(location, r"Software\\Microsoft\Windows\\CurrentVersion\\Policies\\")
+        key = wrg.CreateKey(soft, "Explorer") 
+        for setting in settings:
+            if setting == "1": # No Control Panel
+                wrg.SetValueEx(key, "NoControlPanel", 0, wrg.REG_DWORD, 1)
+            elif setting == "2": #No Drive C
+                wrg.SetValueEx(key, "NoDrives", 0, wrg.REG_DWORD, 4)
+            elif setting == "3": #No AutoRun     
+                wrg.SetValueEx(key, "NoDriveTypeAutoRun", 0, wrg.REG_DWORD, 145)
+            elif setting == "4": #No Start Menu Programs 
+                wrg.SetValueEx(key, "NoStartMenuMorePrograms", 0, wrg.REG_DWORD, 1) 
+            elif setting == "5":  #No Right Click    
+                wrg.SetValueEx(key, "NoViewContextMenu", 0, wrg.REG_DWORD, 1) 
+            elif setting == "6": # Disable Drive D
+                wrg.SetValueEx(key, "NoViewOnDrive", 0, wrg.REG_DWORD, 8)
+        if key:
+            return True
+    except Exception as e:
+        return False
+    
+
 # ================================================================================== IS ADMIN
 def is_admin():
     try:
@@ -82,7 +106,11 @@ if __name__ == "__main__":
                     print("\nCustom Restrictions: ")
                     print(f"Select Values you want to Activate! [1,2,3,5] \n\t[1]. No Control Panel. \n\t[2]. No Drive C \n\t[3]. No AutoRun \n\t[4]. No Start Menu Programs \n\t[5]. No Right Click \n\t[6]. Disable Drive D \n\t[x]. Cancel/Back")
                     custom_menu = input("Settings: ") 
-                    print(custom_menu)
+                    if CustomRestriction(custom_menu):
+                        print("Success!!")
+                    else:
+                        print("Something went wrong!!! ")
+                        
                 else: 
                     menu = False
                     input("Exit")
