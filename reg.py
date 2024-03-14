@@ -40,7 +40,8 @@ def changeValue(value):
         return False 
 
 def CustomRestriction(settings):
-    
+    return True
+
     pass
     
 # ================================================================================== IS ADMIN
