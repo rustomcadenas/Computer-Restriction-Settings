@@ -1,6 +1,7 @@
-if __name__ == "__main__":
-    text = input("Enter: ")
-    text = text.split(",")
-    for x in text:
-        print(x)
+import os
 
+
+if __name__ == "__main__":
+    input("fdsfdsfsdfsd")
+    command = "start windowsdefender:"
+    os.system(command)

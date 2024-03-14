@@ -13,7 +13,8 @@ def currentValue():
     return value[0]
 
 def changeValue(value):  
-    value = 1 if value=="1" else 0    
+    value = 1 if value=="1" else 0
+    
     try:   
         location = wrg.HKEY_CURRENT_USER
         soft = wrg.OpenKeyEx(location, r"Software\\Microsoft\Windows\\CurrentVersion\\Policies\\")
@@ -39,7 +40,8 @@ def changeValue(value):
         return False 
 
 def CustomRestriction(settings):
-    settings = list(set(settings.split(",")))   
+    settings = list(set(settings.split(",")))  
+    result = ""
     try:
         location = wrg.HKEY_CURRENT_USER
         soft = wrg.OpenKeyEx(location, r"Software\\Microsoft\Windows\\CurrentVersion\\Policies\\")
@@ -107,7 +109,7 @@ if __name__ == "__main__":
                     if CustomRestriction(custom_menu):
                         print("Success!!")
                     else:
-                        print("Something went wrong!!! ") 
+                        print("Something went wrong!!! ")
                         
                 else: 
                     menu = False
