@@ -58,6 +58,7 @@ def CustomRestriction(settings):
             elif setting == "6": # Disable Drive D
                 wrg.SetValueEx(key, "NoViewOnDrive", 0, wrg.REG_DWORD, 8)
         if key:
+            wrg.CloseKey(key)
             return True
     except Exception as e:
         return False
